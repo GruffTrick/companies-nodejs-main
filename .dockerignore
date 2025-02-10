@@ -1,0 +1,11 @@
+.DS_Store
+.dockerignore
+.git/
+.gitattributes
+.gitignore
+.idea/
+dist/
+node_modules/
+compose.yaml
+Dockerfile
+HELP.md

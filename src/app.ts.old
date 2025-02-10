@@ -1,0 +1,23 @@
+import express from 'express';
+import * as process from "node:process";
+import {getCompanies} from "./lib/docsapp";
+
+const app = express();
+const port = Number.parseInt(process.env.PORT || '3000');
+const host = process.env.HOST || '0.0.0.0';
+
+// Basic route for the index path
+app.get('/', async (req, res) => {
+    res.send('Hello World at Companies House!');
+});
+
+// Basic route for the index path
+app.get('/companies', async (req, res) => {
+    let companies = await getCompanies();
+    res.send(companies);
+});
+
+// Start the server
+app.listen(port, host, () => {
+    console.log(`Application is running on http://${host}:${port}`);
+});

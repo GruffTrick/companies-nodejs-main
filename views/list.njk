@@ -1,0 +1,53 @@
+{% extends 'layout.njk' %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% block content %}
+
+{% for company in companies %}
+    {{ govukSummaryList({
+        card: {
+            title: {
+                text: company.companyName
+            },
+            actions: {
+                items: [
+                    {
+                        href: "/companies/" + company.registrationNumber,
+                        text: "Details",
+                        visuallyHiddenText: "View company details"
+                    }
+                ]
+            }
+        },
+        rows: [
+            {
+                key: { text: "Company Number" },
+                value: { html: company.registrationNumber }
+            },
+            {
+                key: { text: "Company Type" },
+                value: { html: company.type }
+            },
+            {
+                key: { text: "Registered Address" },
+                value: { html: company.registeredAddress }
+            },
+            {
+                key: { text: "Dormant?" },
+                value: { html: "No" if company.active else "Yes" }
+            },
+            {
+                key: { text: "Incorporation Date" },
+                value: { html: company.incorporatedOn }
+            }
+        ]
+    }) }}
+{% else %}
+    {{ govukInsetText({
+        text: "There are no companies yet..."
+    }) }}
+{% endfor %}
+
+{% endblock %}
