@@ -6,13 +6,13 @@ networks:
 
 services:
   backend:
-    image: nekosoft/companies-java:v1
+    image: gtrick780/companies-java:v1
     networks:
       - chrnet
     volumes:
       - h2db:/docsapp/h2
   frontend:
-    image: nekosoft/companies-nodejs:v1
+    image: gtrick780/companies-nodejs:v1
     networks:
       - chrnet
     expose:
